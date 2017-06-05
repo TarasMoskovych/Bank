@@ -6,6 +6,9 @@ public class Operations {
 	
 	public static void start() throws SQLException{
 		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/bank_db?createDatabaseIfNotExist=true", "root", "123456");
+		
+		AccountDB.createAccountTable(connection);
+		TransactionDB.createTransactionTable(connection);
 	}
 
 }
