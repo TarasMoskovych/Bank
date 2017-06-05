@@ -86,4 +86,23 @@ public class AccountDB {
 		Operations.menu(connection);
 	}
 	
+	public static void printAllAccounts(Connection connection) throws SQLException{
+		preparedStatement = connection.prepareStatement("select * from account");
+		resultSet = preparedStatement.executeQuery();
+		
+		List<Account> acList = new ArrayList<>();
+		
+		while(resultSet.next()){
+			Account account = new Account(resultSet.getString("name"), resultSet.getString("surName"));
+			acList.add(account);
+		}
+		
+		Collections.sort(acList, new AccountNameComparator());
+		int count = 1;
+		for(Account t: acList){
+			System.out.println(count + ". " + t.getName() + " " + t.getSurName());
+			count++;
+		}
+	}
+	
 }

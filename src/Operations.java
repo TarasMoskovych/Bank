@@ -32,6 +32,7 @@ public class Operations {
 				}
 				if(o == 2) AccountDB.createNewAccount(connection);	
 				if(o == 3) AccountDB.deleteAccount(connection);
+				if(o == 4) AccountDB.printAllAccounts(connection);
 			}
 			
 			catch(Exception e){
