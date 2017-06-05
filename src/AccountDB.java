@@ -49,6 +49,31 @@ public class AccountDB {
 		}
 	}
 	
+	public static void login(Connection connection) throws SQLException{
+		System.out.print("Input your login: ");
+		Scanner sc = new Scanner(System.in);
+		String login = sc.nextLine();
+		
+		preparedStatement = connection.prepareStatement("select * from account");
+		resultSet = preparedStatement.executeQuery();
+		
+		while(resultSet.next()){
+			if(resultSet.getString("login").equals(login)){
+				System.out.print("Input your password: ");
+				String password = sc.nextLine();
+				if(resultSet.getString("password").equals(password)){
+					Account account = new Account(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("surName"), resultSet.getString("login"), resultSet.getString("password"), resultSet.getFloat("amount"));
+					Operations.transactionOperations(connection, account);
+				}
+				else System.out.println("Incorrect password!");
+			}
+			else{
+				System.out.println("Account doesn't exist!");
+				break;
+			}
+		}
+	}
+	
 	public static void deleteAccount(Connection connection) throws SQLException{
 		System.out.print("Input your login: ");
 		Scanner sc = new Scanner(System.in);
