@@ -30,7 +30,8 @@ public class Operations {
 					connection.close();
 					System.exit(0);
 				}
-				
+				if(o == 2) AccountDB.createNewAccount(connection);	
+				if(o == 3) AccountDB.deleteAccount(connection);
 			}
 			
 			catch(Exception e){
