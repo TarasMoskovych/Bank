@@ -74,6 +74,13 @@ public class AccountDB {
 		}
 	}
 	
+	public static void updateAmount(float amount, Connection connection, int id) throws SQLException{
+		preparedStatement = connection.prepareStatement("update account set amount = ? where id = ?");
+		preparedStatement.setFloat(1, amount);
+		preparedStatement.setInt(2, id);
+		preparedStatement.execute();
+	}
+	
 	public static void deleteAccount(Connection connection) throws SQLException{
 		System.out.print("Input your login: ");
 		Scanner sc = new Scanner(System.in);
