@@ -54,7 +54,11 @@ public class Operations {
 			System.out.print(">>");
 			o = sc.nextInt();
 			if(o == 1) menu(connection);
-		
+			if(o == 1) menu(connection);
+			if(o == 2) TransactionDB.createNewTransaction(account, connection);
+			if(o == 3) printAccount(account);
+			if(o == 4) TransactionDB.printTransactions(connection, account);
+			if(o == 5) TransactionDB.deleteTransaction(connection);
 			
 		} while(o != 0);
 	}
